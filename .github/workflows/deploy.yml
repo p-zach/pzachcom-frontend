@@ -57,7 +57,8 @@ jobs:
               --content-paths "/*" \
               --profile-name "azurefd" \
               --name "pzachep-duhtche2cdc0bned.z02.azurefd.net" \
-              --resource-group "pzachrg"
+              --resource-group "pzachrg" \
+              --auth-mode login
             echo "CDN Purge initiated."
 
       # 5. Logout from Azure (good practice)
