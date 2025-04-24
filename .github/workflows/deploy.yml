@@ -23,16 +23,6 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Check Azure Login Context
-        uses: azure/cli@v1
-        with:
-          inlineScript: |
-            echo "--- Verifying Login ---"
-            az account show # Shows the subscription context logged into
-            echo "--- Checking Storage Account Access (List Containers) ---"
-            az storage container list --account-name ${{ env.AZURE_STORAGE_ACCOUNT_NAME }} --auth-mode login # Explicitly use login auth
-            echo "--- Storage Account Access Check Complete ---"
-
       # 3. Deploy files to Azure Blob Storage static website container ($web)
       - name: Deploy to Azure Storage Static Website
         uses: azure/cli@v1
@@ -57,8 +47,7 @@ jobs:
               --content-paths "/*" \
               --profile-name "azurefd" \
               --name "pzachep-duhtche2cdc0bned.z02.azurefd.net" \
-              --resource-group "pzachrg" \
-              --auth-mode login
+              --resource-group "pzachrg"
             echo "CDN Purge initiated."
 
       # 5. Logout from Azure (good practice)
