@@ -47,7 +47,7 @@ jobs:
             az afd endpoint purge \
               --resource-group "pzachrg" \
               --profile-name "azurefd" \
-              --endpoint-name "pzachep-duhtche2cdc0bned.z02.azurefd.net" \
+              --endpoint-name "pzachep" \
               --content-paths "/*"
             echo "Azure Front Door Purge initiated."
 
