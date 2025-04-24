@@ -37,18 +37,19 @@ jobs:
               --auth-mode login
 
       # 4. (Optional but Recommended) Purge Azure CDN Endpoint Cache (if using CDN)
-      - name: Purge Azure CDN Endpoint Cache
+      - name: Purge Azure Front Door Endpoint Cache
         if: success() # Only run if deployment succeeded
         uses: azure/cli@v1
         with:
           inlineScript: |
-            echo "Purging CDN Endpoint..."
-            az cdn endpoint purge \
-              --content-paths "/*" \
+            echo "Purging Azure Front Door Endpoint..."
+            # Use 'az afd endpoint purge' for Azure Front Door Standard
+            az afd endpoint purge \
+              --resource-group "pzachrg" \
               --profile-name "azurefd" \
-              --name "pzachep-duhtche2cdc0bned.z02.azurefd.net" \
-              --resource-group "pzachrg"
-            echo "CDN Purge initiated."
+              --endpoint-name "pzachep-duhtche2cdc0bned.z02.azurefd.net" \
+              --content-paths "/*"
+            echo "Azure Front Door Purge initiated."
 
       # 5. Logout from Azure (good practice)
       - name: Logout from Azure
