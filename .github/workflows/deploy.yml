@@ -46,7 +46,7 @@ jobs:
             # Use 'az afd endpoint purge' for Azure Front Door Standard
             az afd endpoint purge \
               --resource-group "pzachrg" \
-              --profile-name "azurefd" \
+              --profile-name "pzachfd" \
               --endpoint-name "pzachep" \
               --content-paths "/*"
             echo "Azure Front Door Purge initiated."
