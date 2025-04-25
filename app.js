@@ -1,3 +1,7 @@
+/**
+ * Update the site visitor count.
+ * @param {number} newValue - The value to update the visitor count to.
+ */
 async function updateValue(newValue) {
     const response = await fetch('https://pzachcomfn.azurewebsites.net/api/UpdateValue', {
       method: 'POST',
@@ -15,6 +19,9 @@ async function updateValue(newValue) {
     console.log('Update response:', result);
 }
 
+/**
+ * Get the current site visitor count.
+ */
 async function getValue() {
     const response = await fetch('https://pzachcomfn.azurewebsites.net/api/GetValue?partitionKey=VALUES&rowKey=VISITOR_COUNT');
     const result = await response.text();
@@ -23,6 +30,8 @@ async function getValue() {
     return result
 }
 
+// On page load, get the site visitor count, increment it and display it, and 
+// update the count on the server.
 document.addEventListener('DOMContentLoaded', async function() {
     try {
         let count = await getValue();
