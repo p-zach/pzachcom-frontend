@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: //[new URL('https://pzachcomfn.azurewebsites.net/api/random-photo?ts=*')],
+    remotePatterns:
     [
       {
         hostname: 'pzachcomfn.azurewebsites.net'
