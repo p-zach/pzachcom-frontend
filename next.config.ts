@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
     [
       {
         hostname: 'pzachcomfn.azurewebsites.net'
+      },
+      {
+        hostname: 'pzach.blob.core.windows.net'
       }
     ]
   },
