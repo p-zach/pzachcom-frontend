@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig: NextConfig = {
   output: 'export', // static export for GH pages
   images: {
@@ -15,8 +17,8 @@ const nextConfig: NextConfig = {
     ]
   },
   // Tell GH pages where the image assets are
-  basePath: '/pzachcom-frontend',
-  assetPrefix: '/pzachcom-frontend',
+  basePath: isProd ? '/pzachcom-frontend' : '',
+  assetPrefix: isProd ? '/pzachcom-frontend/' : '',
   trailingSlash: true,
 };
 
