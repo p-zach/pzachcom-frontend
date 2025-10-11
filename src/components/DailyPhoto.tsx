@@ -46,17 +46,6 @@ export default function DailyPhoto() {
     }
   };
 
-  async function loadExif() {
-    try {
-      const response = await fetch(photoUrl);
-      const blob = await response.blob();
-      const exif = await exifr.parse(blob);
-      setExifString(createExifString(exif));
-    } catch (err) {
-      console.error("Error loading EXIF:", err);
-    }
-  }
-
   function createExifString(exif: Record<string, unknown>) {
     const model = exif["Model"] as string;
     const focalLength = exif["FocalLength"] as number;
@@ -74,10 +63,21 @@ export default function DailyPhoto() {
   }, []);
 
   useEffect(() => {
+    async function loadExif() {
+      try {
+        const response = await fetch(photoUrl);
+        const blob = await response.blob();
+        const exif = await exifr.parse(blob);
+        setExifString(createExifString(exif));
+      } catch (err) {
+        console.error("Error loading EXIF:", err);
+      }
+    }
+
     if (photoUrl) {
       loadExif();
     }
-  }, [photoUrl, loadExif]);
+  }, [photoUrl]);
 
   return (
     <div>
