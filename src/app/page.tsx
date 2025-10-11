@@ -17,11 +17,11 @@ export default function HomePage() {
                 />
               </div>
               <h2 className="text-2xl font-roboto-serif text-brand-dark mb-6">
-                Hi, I'm Porter!
+                Hi, I&apos;m Porter!
               </h2>
               <div className="text-md text-gray-700 mx-auto mb-6 text-left">
                 <p className="mb-6">
-                  I'm a full-stack developer who builds reliable systems and 
+                  I&apos;m a full-stack developer who builds reliable systems and 
                   APIs with Python, C#, and TypeScript. My work often lives in the 
                   intersection of automation and system design, where small 
                   improvements can make a big difference at scale. I believe code 

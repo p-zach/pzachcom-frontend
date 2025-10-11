@@ -17,7 +17,6 @@ export default function DailyPhoto() {
   const [loading, setLoading] = useState(false);
   const [photoError, setPhotoError] = useState<string | null>(null);
 
-  const [exifError, setExifError] = useState<string | null>(null);
   const [exifString, setExifString] = useState<string>("");
 
   async function fetchRandomPhoto() {
@@ -39,8 +38,9 @@ export default function DailyPhoto() {
       const chosen = data.photos[randomIndex];
 
       setPhotoUrl(`${PHOTO_BLOB_URL}/${chosen}`);
-    } catch (err: any) {
-      setPhotoError(err.message || "Error fetching photo");
+    } catch (err: unknown) {
+      if (err instanceof Error)
+        setPhotoError(err.message || "Error fetching photo");
     } finally {
       setLoading(false);
     }
@@ -54,16 +54,15 @@ export default function DailyPhoto() {
       setExifString(createExifString(exif));
     } catch (err) {
       console.error("Error loading EXIF:", err);
-      setExifError("Could not read EXIF data.");
     }
   }
 
-  function createExifString(exif: Record<string, any>) {
-    const model = exif["Model"];
-    const focalLength = exif["FocalLength"];
-    const iso = exif["ISO"];
-    const exposureTime = exif["ExposureTime"];
-    const aperture = exif["FNumber"].toFixed(1);
+  function createExifString(exif: Record<string, unknown>) {
+    const model = exif["Model"] as string;
+    const focalLength = exif["FocalLength"] as number;
+    const iso = exif["ISO"] as number;
+    const exposureTime = exif["ExposureTime"] as number;
+    const aperture = (exif["FNumber"] as number).toFixed(1);
 
     const shutterSpeed = new Fraction(exposureTime).simplify(0.0000001).toFraction();
 
@@ -78,7 +77,7 @@ export default function DailyPhoto() {
     if (photoUrl) {
       loadExif();
     }
-  }, [photoUrl]);
+  }, [photoUrl, loadExif]);
 
   return (
     <div>

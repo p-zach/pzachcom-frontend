@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:strict": "concurrently \"npm run dev\" \"npm run lint:watch\"",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:watch": "chokidar \"**/*.{js,jsx,ts,tsx}\" -c \"npm run lint\""
   },
   "dependencies": {
     "exifr": "^7.1.3",
@@ -23,6 +25,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/seedrandom": "^3.0.8",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
     "tailwindcss": "^4",
