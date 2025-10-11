@@ -10,7 +10,7 @@ export default function HomePage() {
             <div className="flex-1">
               <div className="w-1/3 relative aspect-square mx-auto mb-6">
                 <Image 
-                  src="/headshot_square.jpg"
+                  src="./headshot_square.jpg"
                   alt="Headshot photo"
                   fill
                   className="rounded-full object-cover shadow-xl"
