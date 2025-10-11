@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
   },
   // Tell GH pages where the image assets are
   basePath: '/pzachcom-frontend',
-  assetPrefix: './pzachcom-frontend',
+  assetPrefix: '/pzachcom-frontend',
   trailingSlash: true,
 };
 
