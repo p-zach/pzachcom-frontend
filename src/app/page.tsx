@@ -16,9 +16,9 @@ export default function HomePage() {
                   className="rounded-full object-cover shadow-xl"
                 />
               </div>
-              <h2 className="text-2xl font-roboto-serif text-brand-dark mb-6">
+              <h1 className="text-2xl font-roboto-serif text-brand-dark mb-6">
                 Hi, I&apos;m Porter!
-              </h2>
+              </h1>
               <div className="text-md text-gray-700 mx-auto mb-6 text-left">
                 <p className="mb-6">
                   I&apos;m a full-stack developer who builds reliable systems and 
