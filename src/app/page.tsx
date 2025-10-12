@@ -42,6 +42,15 @@ export default function HomePage() {
                   &nbsp;&nbsp;- <a href="https://en.wikipedia.org/wiki/David_Wheeler_(computer_scientist)" className="underline">David Wheeler</a>
                 </p>
               </div>
+              <div>
+                <Image
+                  src="https://github-readme-stats.vercel.app/api?username=p-zach&show_icons=true&theme=transparent&hide_border=true&show_icons=true&include_all_commits=true"
+                  alt="GitHub stats"
+                  width={500}
+                  height={500}
+                  className="mx-auto"
+                />
+              </div>
             </div>
             <div className="flex-1">
               <DailyPhoto />

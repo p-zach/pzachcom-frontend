@@ -2,49 +2,28 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import seedrandom from 'seedrandom';
 import * as exifr from "exifr";
 import { Fraction } from 'fraction.js';
 
-interface PhotoList {
-  photos: string[];
-}
-
 export default function DailyPhoto() {
-  const PHOTO_BLOB_URL = "https://pzach.blob.core.windows.net/photos"
+  const PHOTO_API_URL = "https://pzachcomfn.azurewebsites.net/api/photo-of-the-day?max_w=500"
 
-  const [photoUrl, setPhotoUrl] = useState<string>("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [photoError, setPhotoError] = useState<string | null>(null);
 
   const [exifString, setExifString] = useState<string>("");
 
-  async function fetchRandomPhoto() {
+  async function loadExif() {
     try {
-      setLoading(true);
-      setPhotoError(null);
-
-      const res = await fetch(`${PHOTO_BLOB_URL}/photos.json`);
-      if (!res.ok) throw new Error(`Failed to load JSON (${res.status})`);
-
-      const data: PhotoList = await res.json();
-      if (!data.photos?.length) throw new Error("No photos found in JSON");
-
-      const today = new Date();
-      const seed = today.getFullYear() * 366 + today.getMonth() * 31 + today.getDate();
-      const rng = seedrandom(`${seed}`);
-
-      const randomIndex = Math.floor(rng() * data.photos.length);
-      const chosen = data.photos[randomIndex];
-
-      setPhotoUrl(`${PHOTO_BLOB_URL}/${chosen}`);
-    } catch (err: unknown) {
-      if (err instanceof Error)
-        setPhotoError(err.message || "Error fetching photo");
-    } finally {
-      setLoading(false);
+      const response = await fetch(PHOTO_API_URL);
+      const blob = await response.blob();
+      const exif = await exifr.parse(blob);
+      setExifString(createExifString(exif));
+    } catch (err) {
+      console.error("Error loading EXIF:", err);
+      setPhotoError(err as string);
     }
-  };
+  }
 
   function createExifString(exif: Record<string, unknown>) {
     const model = exif["Model"] as string;
@@ -59,36 +38,18 @@ export default function DailyPhoto() {
   }
 
   useEffect(() => {
-    fetchRandomPhoto();
+    loadExif();
   }, []);
-
-  useEffect(() => {
-    async function loadExif() {
-      try {
-        const response = await fetch(photoUrl);
-        const blob = await response.blob();
-        const exif = await exifr.parse(blob);
-        setExifString(createExifString(exif));
-      } catch (err) {
-        console.error("Error loading EXIF:", err);
-      }
-    }
-
-    if (photoUrl) {
-      loadExif();
-    }
-  }, [photoUrl]);
 
   return (
     <div>
       <h1 className="text-4xl font-roboto-serif text-brand-dark mb-3">
         Photo of the Day
       </h1>
-      {loading && <p>Loading random photo...</p>}
       {photoError && <p className="text-red-500">{photoError}</p>}
-      {photoUrl && !loading && !photoError && (
+      {!photoError && (
         <Image
-          src={photoUrl}
+          src={PHOTO_API_URL}
           alt="Random photo"
           className="shadow-md mx-auto"
           width={0} height={0} // required by component
@@ -97,12 +58,14 @@ export default function DailyPhoto() {
             height: "auto", // maintain aspect ratio
           }}
           priority
-          unoptimized
+          unoptimized 
+          onLoad={() => setLoading(false)}
         />
       )}
       <div className="p-3 text-sm italic">
-        {exifString? exifString : "Loading EXIF data..."}
+        {!loading && (exifString? exifString : "Loading EXIF data...")}
       </div>
+      {loading && <p>Loading photo of the day...</p>}
     </div>
   )
 }
