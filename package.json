@@ -8,7 +8,7 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "lint:watch": "chokidar \"**/*.{js,jsx,ts,tsx}\" -c \"npm run lint\""
+    "lint:watch": "chokidar \"**/*.{ts,tsx}\" -c \"npm run lint\""
   },
   "dependencies": {
     "exifr": "^7.1.3",

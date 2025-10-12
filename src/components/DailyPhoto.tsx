@@ -13,17 +13,7 @@ export default function DailyPhoto() {
 
   const [exifString, setExifString] = useState<string>("");
 
-  async function loadExif() {
-    try {
-      const response = await fetch(PHOTO_API_URL);
-      const blob = await response.blob();
-      const exif = await exifr.parse(blob);
-      setExifString(createExifString(exif));
-    } catch (err) {
-      console.error("Error loading EXIF:", err);
-      setPhotoError(err as string);
-    }
-  }
+  
 
   function createExifString(exif: Record<string, unknown>) {
     const model = exif["Model"] as string;
@@ -38,6 +28,18 @@ export default function DailyPhoto() {
   }
 
   useEffect(() => {
+    async function loadExif() {
+      try {
+        const response = await fetch(PHOTO_API_URL);
+        const blob = await response.blob();
+        const exif = await exifr.parse(blob);
+        setExifString(createExifString(exif));
+      } catch (err) {
+        console.error("Error loading EXIF:", err);
+        setPhotoError(err as string);
+      }
+    }
+
     loadExif();
   }, []);
 
@@ -51,7 +53,7 @@ export default function DailyPhoto() {
         <Image
           src={PHOTO_API_URL}
           alt="Random photo"
-          className="shadow-md mx-auto"
+          className="shadow-lg mx-auto"
           width={0} height={0} // required by component
           style={{
             width: "500px", // actual fixed width
