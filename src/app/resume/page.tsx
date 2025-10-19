@@ -1,4 +1,4 @@
-import Game from "@/components/TowerDefenseGame";
+import Game from "@/components/TowerDefense";
 
 export default function ResumePage() {  
   return (
