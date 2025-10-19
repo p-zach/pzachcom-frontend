@@ -1,7 +1,10 @@
+// Game types
 type Enemy = { x: number; y: number; hp: number; frameOffset: number, hasCoin: boolean, hurtTime: number, hurtAt: number };
 type Coin = { x: number, y: number, timeToLive: number, madeAt: number };
 type Tower = { x: number; y: number, timeFired: number };
 type Projectile = { x: number; y: number, target: Enemy, hit: boolean };
+
+//#region Constants
 
 // Game mechanic constants
 const ENEMY_START_HP = 3;
@@ -26,6 +29,8 @@ const COIN_ANIM_FRAMES = 4;
 const COIN_ANIMS_COUNT = 2;
 const COIN_TIME_TO_LIVE = 4;
 const COIN_TIME_TO_LIVE_UPDATE_FREQ = 3;
+
+//#endregion
 
 export class TowerDefenseGame {
     enemySprite: HTMLImageElement;
@@ -57,6 +62,8 @@ export class TowerDefenseGame {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
     }
+
+    //#region Public methods
 
     /**
      * Update canvas width and height values.
@@ -304,6 +311,10 @@ export class TowerDefenseGame {
         });
     }
 
+    //#endregion
+
+    //#region Private methods
+
     /**
      * Checks whether a point is within an enemy's bounds.
      * @param enemy The enemy to check.
@@ -337,4 +348,6 @@ export class TowerDefenseGame {
             hurtAt: 0,
         });
     }
+
+    //#endregion
 }
