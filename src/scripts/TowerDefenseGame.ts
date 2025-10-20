@@ -8,7 +8,7 @@ type Projectile = { x: number; y: number, target: Enemy, hit: boolean };
 
 // Game mechanic constants
 const ENEMY_START_HP = 3;
-const ENEMY_SPAWN_PERIOD = 2000;
+const ENEMY_SPAWN_PERIOD = 5_000;
 const TOWER_COOLDOWN = 5000;
 const TOWER_RANGE = 200;
 const PROJECTILE_SPEED = 5;
@@ -42,6 +42,9 @@ export class TowerDefenseGame {
     enemies: Enemy[] = [];
     coins: Coin[] = [];
     projectiles: Projectile[] = [];
+
+    lastSpawnTime: number = 0;
+    canSpawn: boolean = false;
 
     canvasWidth: number;
     canvasHeight: number;
@@ -77,12 +80,9 @@ export class TowerDefenseGame {
 
     /**
      * Start spawning enemies at a constant interval.
-     * @returns The NodeJS.Timeout controlling the interval.
      */
-    public startSpawningEnemies(): NodeJS.Timeout {
-        return setInterval(() => {
-            this.spawnEnemy();
-        }, ENEMY_SPAWN_PERIOD);
+    public startSpawningEnemies() {
+        this.canSpawn = true;
     }
 
     /**
@@ -130,6 +130,10 @@ export class TowerDefenseGame {
      */
     public update(frameCount: number) {
         // Update enemies
+        if (this.canSpawn && this.lastSpawnTime + ENEMY_SPAWN_PERIOD <= Date.now()) {
+            this.spawnEnemy();
+            this.lastSpawnTime = Date.now();
+        }
         this.enemies.forEach((e) => {
             e.x += e.hasCoin ? 1 : -1;
             // Give a coin to the enemy if it reached the left side of the game
@@ -176,8 +180,8 @@ export class TowerDefenseGame {
                     const d = Math.sqrt(dx * dx + dy * dy);
                     if (d < TOWER_RANGE) {
                         this.projectiles.push({
-                            x: t.x,
-                            y: t.y - TOWER_SIZE / 4,
+                            x: t.x - PROJECTILE_SIZE / 2,
+                            y: t.y - TOWER_SIZE / 4 - PROJECTILE_SIZE / 2,
                             target: e,
                             hit: false,
                         });

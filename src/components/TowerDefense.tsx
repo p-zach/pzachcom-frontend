@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { TowerDefenseGame } from "@/scripts/TowerDefenseGame";
 
 const MIN_CANVAS_HEIGHT = 400;
+const GAME_START_DELAY = 20_000;
 
 export default function TowerDefense() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -25,18 +26,22 @@ export default function TowerDefense() {
     projectileImg.src = "/projectile.png";
 
     let loaded = 0;
+    let timeout: NodeJS.Timeout | null = null;
     const checkLoaded = () => {
       loaded++;
       if (loaded === 4) {
-        setAssetsLoaded(true);
-        gameRef.current = new TowerDefenseGame(
-          enemyImg,
-          coinImg,
-          towerImg,
-          projectileImg,
-          canvasRef.current!.width,
-          canvasRef.current!.height
-        );
+        // Once images are loaded, start the game after a delay
+        timeout = setTimeout(() => {
+          setAssetsLoaded(true);
+          gameRef.current = new TowerDefenseGame(
+            enemyImg,
+            coinImg,
+            towerImg,
+            projectileImg,
+            canvasRef.current!.width,
+            canvasRef.current!.height
+          );
+        }, GAME_START_DELAY);
       }
     };
     
@@ -44,6 +49,13 @@ export default function TowerDefense() {
     coinImg.onload = checkLoaded;
     towerImg.onload = checkLoaded;
     projectileImg.onload = checkLoaded;
+
+    return () => { 
+      if (timeout) 
+        clearTimeout(timeout);
+      else 
+        loaded = -1; 
+    };
   }, []);
 
   // Resize canvas to match parent size
@@ -99,7 +111,7 @@ export default function TowerDefense() {
 
     ctx.imageSmoothingEnabled = false;
 
-    const interval = gameRef.current.startSpawningEnemies();
+    gameRef.current.startSpawningEnemies();
 
     const loop = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -120,23 +132,18 @@ export default function TowerDefense() {
     };
 
     requestAnimationFrame(loop);
-    return () => clearInterval(interval);
   }, [assetsLoaded]);
 
   return (
-    <div className="relative w-full h-full bg-white flex flex-col items-center justify-center">
+    <div className="absolute inset-0 z-0 pointer-events-auto">
       <canvas
         ref={canvasRef}
         width={1}
         height={MIN_CANVAS_HEIGHT}
+        className="disable-anti-aliasing"
         onClick={handleClick}
         onMouseMove={handleMouseMove}
-        className="disable-anti-aliasing"
       />
-      <div className="absolute top-4 text-white text-center">
-        <h1 className="text-2xl font-bold mb-1">ASDF</h1>
-        <p className="text-sm opacity-80"></p>
-      </div>
     </div>
   );
 }
