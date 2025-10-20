@@ -18,7 +18,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link href="/">
             <div className="text-3xl font-roboto-serif font-bold text-brand-dark flex gap-1">
-              <p>Porter Zach</p>
+              <p>pzach.com</p>
             </div>
           </Link>
 
