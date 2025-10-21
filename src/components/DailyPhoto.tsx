@@ -6,7 +6,7 @@ import * as exifr from "exifr";
 import { Fraction } from 'fraction.js';
 
 export default function DailyPhoto() {
-  const PHOTO_API_URL = "https://pzachcomfn.azurewebsites.net/api/photo-of-the-day?max_w=500"
+  const PHOTO_API_URL = "https://pzachcomfn.azurewebsites.net/api/photo-of-the-day"
 
   const [loading, setLoading] = useState(true);
   const [photoError, setPhotoError] = useState<string | null>(null);
@@ -45,9 +45,6 @@ export default function DailyPhoto() {
 
   return (
     <div>
-      <h1 className="text-4xl font-roboto-serif text-brand-dark mb-3">
-        Photo of the Day
-      </h1>
       {photoError && <p className="text-red-500">{photoError}</p>}
       {!photoError && (
         <Image
@@ -64,9 +61,9 @@ export default function DailyPhoto() {
           onLoad={() => setLoading(false)}
         />
       )}
-      <div className="p-3 text-sm italic">
-        {!loading && (exifString? exifString : "Loading EXIF data...")}
-      </div>
+      {!loading && <div className="pt-3 text-sm italic">
+        {exifString? exifString : "Loading EXIF data..."}
+      </div>}
       {loading && <p>Loading photo of the day...</p>}
     </div>
   )

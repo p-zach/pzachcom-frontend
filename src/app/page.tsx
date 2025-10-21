@@ -1,5 +1,9 @@
 import DailyPhoto from "@/components/DailyPhoto";
+import Card from "@/components/Card";
+import Button from "@/components/Button";
 import Image from "next/image";
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { IoIosDocument } from "react-icons/io";
 
 export default function HomePage() {  
   const text = {
@@ -25,51 +29,71 @@ export default function HomePage() {
   }
 
   return (
-    <div>
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6 text-center">
-          <div className="flex flex-col md:flex-row gap-12 w-full max-w-6xl mx-auto p-4">
-            <div className="flex-1">
-              <div className="w-1/3 relative aspect-square mx-auto mb-6">
-                <Image 
+    <section className="section">
+      <div className="section-container">
+        <div className="section-flex">
+
+          {/* LEFT CARD */}
+          <Card>
+            <div className="flex flex-col items-center">
+              <div className="w-32 h-32 relative mb-6">
+                <Image
                   src="./headshot_square.jpg"
                   alt="Headshot photo"
                   fill
                   className="rounded-full object-cover shadow-xl"
+                  priority
                 />
               </div>
-              <h1 className="text-2xl font-roboto-serif text-brand-dark mb-6">
+              <h1 className="text-2xl font-roboto-serif text-brand-dark mb-2">
                 {text.title}
               </h1>
-              <div className="text-md text-gray-700 mx-auto mb-6 text-left">
-                <p className="mb-6">
-                  {text.statement}
-                </p>
-                <p className="mb-6">
-                  {text.hobbies}
-                </p>
-                <p className="italic">
+            </div>
+
+            <div className="card-inner text-md">
+              <p>{text.statement}</p>
+              <p>{text.hobbies}</p>
+
+              <div className="pt-4">
+                <hr className="border-t border-dashed border-gray-200 mb-4" />
+                <p className="italic text-sm text-gray-600">
                   {text.quote.text}
                   <br />
-                  &nbsp;&nbsp;- <a href={text.quote.author_link} className="underline">{text.quote.author}</a>
+                  <span className="not-italic text-gray-700">
+                    &nbsp;&nbsp;- <a href={text.quote.author_link} className="underline">{text.quote.author}</a>
+                  </span>
                 </p>
               </div>
-              <div>
-                <Image
-                  src="https://github-readme-stats.vercel.app/api?username=p-zach&show_icons=true&theme=transparent&hide_border=true&show_icons=true&include_all_commits=true"
-                  alt="GitHub stats"
-                  width={500}
-                  height={500}
-                  className="mx-auto"
-                />
+            </div>
+
+            <div className="mt-6 pt-6 border-t border-gray-100">
+              <div className="flex flex-wrap justify-center gap-3 mt-4">
+                <Button href="/resume" icon={IoIosDocument}>Resume</Button>
+                <Button href="https://github.com/p-zach" icon={FaGithub} external>GitHub</Button>
+                <Button href="https://linkedin.com/in/p-zach" icon={FaLinkedin} external>LinkedIn</Button>
               </div>
             </div>
-            <div className="flex-1">
-              <DailyPhoto />
+          </Card>
+
+          {/* RIGHT CARD */}
+          <Card>
+            <h2 className="text-2xl font-roboto-serif text-brand-dark mb-4 text-center">
+              Photo of the Day
+            </h2>
+
+            <div className="rounded-xl overflow-hidden border border-gray-50 bg-gradient-to-b from-white to-gray-50 shadow-inner p-0">
+              <div className="p-4">
+                <DailyPhoto />
+              </div>
             </div>
-          </div>
+
+            <div className="flex flex-wrap justify-center gap-3 mt-4">
+              <Button href="/gallery">Visit the gallery</Button>
+            </div>
+          </Card>
+
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
