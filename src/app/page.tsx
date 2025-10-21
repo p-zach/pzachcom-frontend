@@ -54,14 +54,13 @@ export default function HomePage() {
               <p>{text.statement}</p>
               <p>{text.hobbies}</p>
 
-              <div className="pt-4">
+              <div className="pt-4 text-sm">
                 <hr className="border-t border-dashed border-gray-200 mb-4" />
-                <p className="italic text-sm text-gray-600">
+                <p className="italic text-gray-600">
                   {text.quote.text}
-                  <br />
-                  <span className="not-italic text-gray-700">
-                    &nbsp;&nbsp;- <a href={text.quote.author_link} className="underline">{text.quote.author}</a>
-                  </span>
+                </p>
+                <p className="text-gray-700 mt-2">
+                  &nbsp;&nbsp;- <a href={text.quote.author_link} className="underline">{text.quote.author}</a>
                 </p>
               </div>
             </div>
