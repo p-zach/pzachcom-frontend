@@ -16,3 +16,36 @@
   image-rendering: optimize-contrast;
   -ms-interpolation-mode: nearest-neighbor;
 }
+
+/* CARD */
+.card {
+  @apply flex-1 bg-white/90 dark:bg-white/5 rounded-2xl border border-gray-100 shadow-sm
+         p-8 transition-transform duration-300 ease-out transform
+         hover:-translate-y-1 hover:scale-[1.01]
+         hover:shadow-[0_20px_40px_rgba(99,102,241,0.12)]
+         hover:ring-4 hover:ring-indigo-200/30;
+}
+
+.card-inner {
+  @apply text-gray-700 mx-auto text-left space-y-4 mt-4;
+}
+
+/* BUTTONS */
+.btn {
+  @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300
+         text-sm font-medium transition hover:bg-gray-50
+         focus:outline-none focus:ring-2 focus:ring-indigo-200;
+}
+
+/* SECTION + CONTAINER LAYOUT */
+.section {
+  @apply py-16 bg-white;
+}
+
+.section-container {
+  @apply container mx-auto px-6 text-center;
+}
+
+.section-flex {
+  @apply flex flex-col md:flex-row gap-8 w-full max-w-6xl mx-auto p-6;
+}
