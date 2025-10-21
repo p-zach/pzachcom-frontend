@@ -6,6 +6,8 @@ const MIN_CANVAS_HEIGHT = 400;
 const GAME_START_DELAY = 20_000;
 
 export default function TowerDefense() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const gameRef = useRef<TowerDefenseGame>(null);
   const [assetsLoaded, setAssetsLoaded] = useState(false);
@@ -20,10 +22,10 @@ export default function TowerDefense() {
     const towerImg = new Image();
     const projectileImg = new Image();
 
-    enemyImg.src = "./goblin_spritesheet.png";
-    coinImg.src = "./coin_spritesheet.png";
-    towerImg.src = "./tower.png";
-    projectileImg.src = "./projectile.png";
+    enemyImg.src = `${basePath}/goblin_spritesheet.png`;
+    coinImg.src = `${basePath}/coin_spritesheet.png`;
+    towerImg.src = `${basePath}/tower.png`;
+    projectileImg.src = `${basePath}/projectile.png`;
 
     let loaded = 0;
     let timeout: NodeJS.Timeout | null = null;

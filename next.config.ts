@@ -20,6 +20,9 @@ const nextConfig: NextConfig = {
   basePath: isProd ? '/pzachcom-frontend' : '',
   assetPrefix: isProd ? '/pzachcom-frontend/' : '',
   trailingSlash: true,
-};
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isProd ? '/pzachcom-frontend' : '',
+  },
+}
 
 export default nextConfig;
