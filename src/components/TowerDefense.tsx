@@ -58,7 +58,7 @@ export default function TowerDefense() {
       else 
         loaded = -1; 
     };
-  }, []);
+  }, [basePath]);
 
   // Resize canvas to match parent size
   const resizeCanvasToParent = () => {

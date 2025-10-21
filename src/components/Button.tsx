@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { IconType } from "react-icons";
 
 export default function Button({
   children,
@@ -8,7 +9,7 @@ export default function Button({
 }: {
   children: React.ReactNode;
   href: string;
-  icon?: any;
+  icon?: IconType;
   external?: boolean;
 }) {
   if (external) {
