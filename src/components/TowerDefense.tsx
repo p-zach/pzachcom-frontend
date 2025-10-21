@@ -20,10 +20,10 @@ export default function TowerDefense() {
     const towerImg = new Image();
     const projectileImg = new Image();
 
-    enemyImg.src = "/goblin_spritesheet.png";
-    coinImg.src = "/coin_spritesheet.png";
-    towerImg.src = "/tower.png";
-    projectileImg.src = "/projectile.png";
+    enemyImg.src = "./goblin_spritesheet.png";
+    coinImg.src = "./coin_spritesheet.png";
+    towerImg.src = "./tower.png";
+    projectileImg.src = "./projectile.png";
 
     let loaded = 0;
     let timeout: NodeJS.Timeout | null = null;
