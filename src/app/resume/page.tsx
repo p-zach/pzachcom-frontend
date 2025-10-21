@@ -113,7 +113,7 @@ export default function ResumePage() {
             If you just put `pointer-events-auto select-text` on the div or p
             elements, there's a lot of blank space that the text box won't let
             you click through, which is inconvenient for the minigame. */}
-            <div className="relative w-full h-full bg-white rounded-2xl shadow-2xl p-15 overflow-hidden">
+            <div className="relative w-full h-full bg-white rounded-2xl border border-gray-100 shadow-sm p-15 overflow-hidden">
               <div className="relative z-10 text-brand-dark text-left pointer-events-none">
                 <h1 className="text-3xl font-roboto-serif text-center font-semibold mb-2"><span className="pointer-events-auto select-text">Porter Zach</span></h1>
                 <p className="text-center mb-6"><span className="pointer-events-auto select-text">
