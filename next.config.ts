@@ -1,7 +1,5 @@
 import type { NextConfig } from "next";
 
-const isProd = process.env.NODE_ENV === 'production';
-
 const nextConfig: NextConfig = {
   output: 'export', // static export
   images: {
@@ -15,13 +13,6 @@ const nextConfig: NextConfig = {
         hostname: 'pzach.blob.core.windows.net'
       }
     ]
-  },
-  // Tell GH pages where the assets are
-  basePath: isProd ? '' : '',
-  assetPrefix: isProd ? '/' : '',
-  trailingSlash: true,
-  env: {
-    NEXT_PUBLIC_BASE_PATH: isProd ? '/' : '',
   },
 }
 
