@@ -17,11 +17,11 @@ const nextConfig: NextConfig = {
     ]
   },
   // Tell GH pages where the assets are
-  basePath: isProd ? '/pzachcom-frontend' : '',
-  assetPrefix: isProd ? '/pzachcom-frontend/' : '',
+  basePath: isProd ? '' : '',
+  assetPrefix: isProd ? '/' : '',
   trailingSlash: true,
   env: {
-    NEXT_PUBLIC_BASE_PATH: isProd ? '/pzachcom-frontend' : '',
+    NEXT_PUBLIC_BASE_PATH: isProd ? '/' : '',
   },
 }
 
