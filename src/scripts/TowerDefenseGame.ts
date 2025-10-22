@@ -8,7 +8,7 @@ type Projectile = { x: number; y: number, target: Enemy, hit: boolean };
 
 // Game mechanic constants
 const ENEMY_START_HP = 3;
-const ENEMY_SPAWN_PERIOD = 5_000;
+const ENEMY_SPAWN_PERIOD = 10_000;
 const TOWER_COOLDOWN = 5000;
 const TOWER_RANGE = 200;
 const PROJECTILE_SPEED = 5;
