@@ -45,7 +45,7 @@ export default function HomePage() {
                   priority
                 />
               </div>
-              <h1 className="text-2xl font-roboto-serif text-brand-dark mb-2">
+              <h1 className="text-2xl font-roboto-serif mb-2">
                 {text.title}
               </h1>
             </div>
@@ -56,10 +56,10 @@ export default function HomePage() {
 
               <div className="pt-4 text-sm">
                 <hr className="border-t border-dashed border-gray-200 mb-4" />
-                <p className="italic text-gray-600">
+                <p className="italic">
                   {text.quote.text}
                 </p>
-                <p className="text-gray-700 mt-2">
+                <p className="mt-2">
                   &nbsp;&nbsp;- <a href={text.quote.author_link} className="underline">{text.quote.author}</a>
                 </p>
               </div>
@@ -76,7 +76,7 @@ export default function HomePage() {
 
           {/* RIGHT CARD */}
           <Card>
-            <h2 className="text-2xl font-roboto-serif text-brand-dark mb-4 text-center">
+            <h2 className="text-2xl font-roboto-serif mb-4 text-center">
               Photo of the Day
             </h2>
 

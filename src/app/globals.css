@@ -27,7 +27,7 @@
 }
 
 .card-inner {
-  @apply text-gray-700 mx-auto text-left space-y-4 mt-4;
+  @apply mx-auto text-left space-y-4 mt-4;
 }
 
 /* BUTTONS */

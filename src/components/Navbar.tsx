@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -24,6 +25,7 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
+            <ThemeToggle />
             {navLinks.map((link) => (
               <Link key={link.name} href={link.href} className="text-brand-dark font-noto-sans hover:text-brand-primary transition-colors duration-300">
                 {link.name}
