@@ -1,3 +1,4 @@
+import Section from "@/components/Section";
 import Game from "@/components/TowerDefense";
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
@@ -104,66 +105,62 @@ export default function ResumePage() {
   }
 
   return (
-    <div>
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6 text-center">
-          <div className="max-w-4xl mx-auto">
-            {/* <span className="...">...</span> is around every text field so
-            that only the actual text can be clicked on, not the whole text box.
-            If you just put `pointer-events-auto select-text` on the div or p
-            elements, there's a lot of blank space that the text box won't let
-            you click through, which is inconvenient for the minigame. */}
-            <div className="relative w-full h-full bg-white rounded-2xl border border-gray-100 shadow-sm p-15 overflow-hidden">
-              <div className="relative z-10 text-brand-dark text-left pointer-events-none">
-                <h1 className="text-3xl font-roboto-serif text-center font-semibold mb-2"><span className="pointer-events-auto select-text">Porter Zach</span></h1>
-                <p className="text-center mb-6"><span className="pointer-events-auto select-text">
-                  porterdzach [at] gmail [dot] com | <FaLinkedin className="inline"/> <a href="https://www.linkedin.com/in/p-zach/" target="_blank" rel="noopener noreferrer" className="underline">linkedin.com/in/p-zach
-                  </a> | <FaGithub className="inline"/> <a href="https://github.com/p-zach" target="_blank" rel="noopener noreferrer" className="underline">github.com/p-zach</a>
-                </span></p>
-                <h2 className="text-2xl font-roboto-serif italic -mb-3"><span className="pointer-events-auto select-text">Experience</span></h2>
-                <div className="ml-4">
-                  {resume.jobs.map((j) => 
-                    <div key={j.company + j.title} className="mt-5">
-                      <h2 className="text-xl font-bold mb-1"><span className="pointer-events-auto select-text">{j.title}</span></h2>
-                      <div className="ml-4">
-                        <p className="mb-1">
-                          <span className="pointer-events-auto select-text"><a href={j.company_link} target="_blank" rel="noopener noreferrer" className="underline text-blue-400">
-                            {j.company}
-                          </a> | <span className="">{j.type}
-                          </span>, <span className="italic">{j.start_date} - {j.end_date}</span></span>
-                        </p>
-                        {j.bullets.map((b) =>
-                          <p key={b} className="mb-1">
-                            <span className="pointer-events-auto select-text">· {b}</span>
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-                <h2 className="text-2xl font-roboto-serif italic -mb-3 mt-8"><span className="pointer-events-auto select-text">Education</span></h2>
-                {resume.education.map((e) => 
-                  <div key={e.type} className="mt-5">
-                    <h2 className="text-xl font-bold mb-1"><span className="pointer-events-auto select-text">{e.school}</span></h2>
-                    <div className="ml-4">
-                      <p className="">
-                        <span className="pointer-events-auto select-text">{e.type}, {e.field}</span>
+    <Section>
+      <div className="max-w-4xl mx-auto">
+        {/* <span className="...">...</span> is around every text field so
+        that only the actual text can be clicked on, not the whole text box.
+        If you just put `pointer-events-auto select-text` on the div or p
+        elements, there's a lot of blank space that the text box won't let
+        you click through, which is inconvenient for the minigame. */}
+        <div className="relative w-full h-full rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm p-15 overflow-hidden">
+          <div className="relative z-10 text-brand-dark text-left pointer-events-none">
+            <h1 className="text-3xl font-roboto-serif text-center font-semibold mb-2"><span className="pointer-events-auto select-text">Porter Zach</span></h1>
+            <p className="text-center mb-6"><span className="pointer-events-auto select-text">
+              porterdzach [at] gmail [dot] com | <FaLinkedin className="inline" />&nbsp;<a href="https://www.linkedin.com/in/p-zach/" target="_blank" rel="noopener noreferrer" className="underline">linkedin.com/in/p-zach
+              </a> | <FaGithub className="inline" />&nbsp;<a href="https://github.com/p-zach" target="_blank" rel="noopener noreferrer" className="underline">github.com/p-zach</a>
+            </span></p>
+            <h2 className="text-2xl font-roboto-serif italic -mb-3"><span className="pointer-events-auto select-text">Experience</span></h2>
+            <div className="ml-4">
+              {resume.jobs.map((j) => 
+                <div key={j.company + j.title} className="mt-5">
+                  <h2 className="text-xl font-bold mb-1"><span className="pointer-events-auto select-text">{j.title}</span></h2>
+                  <div className="ml-4">
+                    <p className="mb-1">
+                      <span className="pointer-events-auto select-text"><a href={j.company_link} target="_blank" rel="noopener noreferrer" className="underline text-blue-400">
+                        {j.company}
+                      </a> | <span className="">{j.type}
+                      </span>, <span className="italic">{j.start_date} - {j.end_date}</span></span>
+                    </p>
+                    {j.bullets.map((b) =>
+                      <p key={b} className="mb-1">
+                        <span className="pointer-events-auto select-text">· {b}</span>
                       </p>
-                      <p className="">
-                        <span className="pointer-events-auto select-text"><span className="italic">{e.start_date} - {e.end_date}</span> | GPA: {e.gpa}/4.0</span>
-                      </p>
-                      {e.coursework && <p className="text-sm mt-2">
-                        <span className="pointer-events-auto select-text"><span className="italic">Notable coursework:</span> {e.coursework}</span>
-                      </p>}
-                    </div>
+                    )}
                   </div>
-                )}
-              </div>
-              <Game />
+                </div>
+              )}
             </div>
+            <h2 className="text-2xl font-roboto-serif italic -mb-3 mt-8"><span className="pointer-events-auto select-text">Education</span></h2>
+            {resume.education.map((e) => 
+              <div key={e.type} className="mt-5">
+                <h2 className="text-xl font-bold mb-1"><span className="pointer-events-auto select-text">{e.school}</span></h2>
+                <div className="ml-4">
+                  <p className="">
+                    <span className="pointer-events-auto select-text">{e.type}, {e.field}</span>
+                  </p>
+                  <p className="">
+                    <span className="pointer-events-auto select-text"><span className="italic">{e.start_date} - {e.end_date}</span> | GPA: {e.gpa}/4.0</span>
+                  </p>
+                  {e.coursework && <p className="text-sm mt-2">
+                    <span className="pointer-events-auto select-text"><span className="italic">Notable coursework:</span> {e.coursework}</span>
+                  </p>}
+                </div>
+              </div>
+            )}
           </div>
+          <Game />
         </div>
-      </section>
-    </div>
+      </div>
+    </Section>
   );
 }

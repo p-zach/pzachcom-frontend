@@ -56,8 +56,7 @@ export default function DailyPhoto() {
             width: "500px", // actual fixed width
             height: "auto", // maintain aspect ratio
           }}
-          priority
-          unoptimized 
+          priority 
           onLoad={() => setLoading(false)}
         />
       )}

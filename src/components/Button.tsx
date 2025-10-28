@@ -12,9 +12,13 @@ export default function Button({
   icon?: IconType;
   external?: boolean;
 }) {
+  const styling = "inline-flex items-center gap-2 px-4 py-2 rounded-lg border \
+    border-gray-300 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-900 \
+    focus:outline-none focus:ring-2 focus:ring-indigo-200";
+
   if (external) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className="btn">
+      <a href={href} target="_blank" rel="noopener noreferrer" className={`${styling}`}>
         {Icon && <Icon className="w-4 h-4" />}
         {children}
       </a>
@@ -22,7 +26,7 @@ export default function Button({
   }
 
   return (
-    <Link href={href} className="btn">
+    <Link href={href} className={styling}>
       {Icon && <Icon className="w-4 h-4" />}
       {children}
     </Link>

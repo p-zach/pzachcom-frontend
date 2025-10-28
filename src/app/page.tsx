@@ -1,3 +1,4 @@
+import Section from "@/components/Section";
 import DailyPhoto from "@/components/DailyPhoto";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
@@ -29,70 +30,68 @@ export default function HomePage() {
   }
 
   return (
-    <section className="section">
-      <div className="section-container">
-        <div className="section-flex">
+    <Section>
+      <div className="flex flex-col md:flex-row gap-8 w-full max-w-6xl mx-auto p-6">
 
-          {/* LEFT CARD */}
-          <Card>
-            <div className="flex flex-col items-center">
-              <div className="w-32 h-32 relative mb-6">
-                <Image
-                  src="./headshot_square.jpg"
-                  alt="Headshot photo"
-                  fill
-                  className="rounded-full object-cover shadow-xl"
-                  priority
-                />
-              </div>
-              <h1 className="text-2xl font-roboto-serif mb-2">
-                {text.title}
-              </h1>
+        {/* Left card */}
+        <Card className="bg-white dark:bg-gray-800">
+          <div className="flex flex-col items-center">
+            <div className="w-32 h-32 relative mb-6">
+              <Image
+                src="./headshot_square.jpg"
+                alt="Headshot photo"
+                fill
+                className="rounded-full object-cover shadow-xl"
+                priority
+              />
             </div>
+            <h1 className="text-2xl font-roboto-serif mb-2">
+              {text.title}
+            </h1>
+          </div>
 
-            <div className="card-inner text-md">
-              <p>{text.statement}</p>
-              <p>{text.hobbies}</p>
+          <div className="mx-auto text-left space-y-4 mt-4 text-md">
+            <p>{text.statement}</p>
+            <p>{text.hobbies}</p>
 
-              <div className="pt-4 text-sm">
-                <hr className="border-t border-dashed border-gray-200 mb-4" />
-                <p className="italic">
-                  {text.quote.text}
-                </p>
-                <p className="mt-2">
-                  &nbsp;&nbsp;- <a href={text.quote.author_link} className="underline">{text.quote.author}</a>
-                </p>
-              </div>
+            <div className="pt-4 text-sm text-gray-500 dark:text-gray-300">
+              <hr className="border-t border-dashed border-gray-300 mb-4" />
+              <p className="italic">
+                {text.quote.text}
+              </p>
+              <p className="mt-2">
+                &nbsp;&nbsp;- <a href={text.quote.author_link} className="underline">{text.quote.author}</a>
+              </p>
             </div>
+          </div>
 
-            <div className="mt-6 pt-6 border-t border-gray-100">
-              <div className="flex flex-wrap justify-center gap-3 mt-4">
-                <Button href="/resume" icon={IoIosDocument}>Resume</Button>
-                <Button href="https://github.com/p-zach" icon={FaGithub} external>GitHub</Button>
-                <Button href="https://linkedin.com/in/p-zach" icon={FaLinkedin} external>LinkedIn</Button>
-              </div>
+          <div className="mt-6 pt-6 border-t border-gray-300">
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button href="/resume" icon={IoIosDocument}>Resume</Button>
+              <Button href="https://github.com/p-zach" icon={FaGithub} external>GitHub</Button>
+              <Button href="https://linkedin.com/in/p-zach" icon={FaLinkedin} external>LinkedIn</Button>
             </div>
-          </Card>
+          </div>
+        </Card>
 
-          {/* RIGHT CARD */}
-          <Card>
-            <h2 className="text-2xl font-roboto-serif mb-4 text-center">
-              Photo of the Day
-            </h2>
+        {/* Right card */}
+        <Card>
+          <h2 className="text-2xl font-roboto-serif mb-4 text-center">
+            Photo of the Day
+          </h2>
 
-            <div className="rounded-xl overflow-hidden border border-gray-50 bg-gradient-to-b from-white to-gray-50 shadow-inner p-0">
-              <div className="p-4">
-                <DailyPhoto />
-              </div>
+          <div className="rounded-xl overflow-hidden border border-gray-50 bg-gray-100 dark:bg-gray-700 dark:border-gray-600 shadow-inner p-0">
+            <div className="p-4">
+              <DailyPhoto />
             </div>
+          </div>
 
-            <div className="flex flex-wrap justify-center gap-3 mt-4">
-              <Button href="/gallery">Visit the gallery</Button>
-            </div>
-          </Card>
+          <div className="flex flex-wrap justify-center gap-3 mt-4">
+            <Button href="/gallery">Visit the gallery</Button>
+          </div>
+        </Card>
 
-        </div>
       </div>
-    </section>
+    </Section>
   );
 }

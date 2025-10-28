@@ -27,11 +27,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${notoSans.variable} ${robotoSerif.variable} bg-gray-50 antialiased`}>
+      <body className={`${notoSans.variable} ${robotoSerif.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={true}>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <div className="text-gray-950 dark:text-gray-50 bg-white dark:bg-gray-800 flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
