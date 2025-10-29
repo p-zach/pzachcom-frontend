@@ -45,7 +45,7 @@ export default function DailyPhoto() {
 
   return (
     <div>
-      {photoError && <p className="text-red-500">{photoError}</p>}
+      {photoError && <p className="text-red-500 font-bold">Error fetching the photo!</p>}
       {!photoError && (
         <Image
           src={PHOTO_API_URL}
@@ -60,7 +60,7 @@ export default function DailyPhoto() {
           onLoad={() => setLoading(false)}
         />
       )}
-      {!loading && <div className="pt-3 text-sm italic">
+      {!loading && !photoError && <div className="pt-3 text-sm italic">
         {exifString? exifString : "Loading EXIF data..."}
       </div>}
       {loading && <p>Loading photo of the day...</p>}
