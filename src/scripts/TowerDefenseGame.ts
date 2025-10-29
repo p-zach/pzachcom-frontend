@@ -147,7 +147,7 @@ export class TowerDefenseGame {
         });
         // Remove enemies that are dead or out of bounds
         this.enemies = this.enemies.filter(
-            (e) => e.x <= this.canvasWidth && e.hp > 0
+            (e) => e.x <= this.canvasWidth + ENEMY_SIZE && e.hp > 0
         );
 
         // Update coins
@@ -342,7 +342,7 @@ export class TowerDefenseGame {
      */
     private spawnEnemy(): void {
         this.enemies.push({
-            x: this.canvasWidth,
+            x: this.canvasWidth + ENEMY_SIZE,
             // Make sure enemy fits fully in canvas Y bounds
             y: Math.round((this.canvasHeight - ENEMY_SIZE * 2) * Math.random()) + ENEMY_SIZE,
             hp: ENEMY_START_HP,

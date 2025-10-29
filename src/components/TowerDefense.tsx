@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { TowerDefenseGame } from "@/scripts/TowerDefenseGame";
+import Button from "@/components/Button";
+import { FaSkull } from 'react-icons/fa';
 
 const MIN_CANVAS_HEIGHT = 400;
 const GAME_START_DELAY = 20_000;
@@ -9,8 +11,10 @@ export default function TowerDefense() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const gameRef = useRef<TowerDefenseGame>(null);
   const [assetsLoaded, setAssetsLoaded] = useState(false);
+  const [isGamePlaying, setIsGamePlaying] = useState(false);
+  const animationFrameIdRef = useRef(0);
 
-  const frameCountRef = useRef<number>(0);
+  const frameCountRef = useRef(0);
   const mousePositionRef = useRef<React.MouseEvent | null>(null);
 
   // Load sprites
@@ -33,6 +37,7 @@ export default function TowerDefense() {
         // Once images are loaded, start the game after a delay
         timeout = setTimeout(() => {
           setAssetsLoaded(true);
+          setIsGamePlaying(true);
           gameRef.current = new TowerDefenseGame(
             enemyImg,
             coinImg,
@@ -51,9 +56,13 @@ export default function TowerDefense() {
     projectileImg.onload = checkLoaded;
 
     return () => { 
+      // If the user exits the page after the images finished loading, prevent
+      // the game from starting.
       if (timeout) 
         clearTimeout(timeout);
       else 
+        // If user exits the page when the images hadn't loaded yet, prevent the
+        // timeout from starting.
         loaded = -1; 
     };
   }, []);
@@ -102,8 +111,8 @@ export default function TowerDefense() {
 
   // Main game update & draw loop
   useEffect(() => {
-    if (!gameRef.current) return;
-
+    const game = gameRef.current;
+    if (!game) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -111,39 +120,61 @@ export default function TowerDefense() {
 
     ctx.imageSmoothingEnabled = false;
 
-    gameRef.current.startSpawningEnemies();
+    game.startSpawningEnemies();
 
     const loop = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      gameRef.current!.update(frameCountRef.current);
-      gameRef.current!.draw(ctx, frameCountRef.current);
+      game.update(frameCountRef.current);
+      game.draw(ctx, frameCountRef.current);
       
-      if (canvasRef.current && mousePositionRef.current) {
-        if (gameRef.current!.mouseOnEnemy(mousePositionRef.current)) {
-          canvasRef.current.style.cursor = "pointer";
+      if (canvas && mousePositionRef.current) {
+        if (game.mouseOnEnemy(mousePositionRef.current)) {
+          canvas.style.cursor = "pointer";
         } else {
-          canvasRef.current.style.cursor = "default";
+          canvas.style.cursor = "default";
         }
       }
 
       frameCountRef.current++;
-      requestAnimationFrame(loop);
+
+      animationFrameIdRef.current = requestAnimationFrame(loop);
     };
 
     requestAnimationFrame(loop);
-  }, [assetsLoaded]);
+  }, [assetsLoaded, isGamePlaying]);
+
+  function stopGame() {
+    setIsGamePlaying(false);
+    cancelAnimationFrame(animationFrameIdRef.current)
+    gameRef.current = null;
+
+    // Clear the canvas
+    canvasRef.current!.getContext("2d")!.clearRect(
+      0, 0, canvasRef.current!.width, canvasRef.current!.height
+    );
+  }
 
   return (
-    <div className="absolute inset-0 z-0 pointer-events-auto">
-      <canvas
-        ref={canvasRef}
-        width={1}
-        height={MIN_CANVAS_HEIGHT}
-        className="disable-anti-aliasing"
-        onClick={handleClick}
-        onMouseMove={handleMouseMove}
-      />
-    </div>
+    <>
+      <div className="absolute inset-0 z-0 pointer-events-auto">
+        <canvas
+          ref={canvasRef}
+          width={1}
+          height={1}
+          className="disable-anti-aliasing"
+          onClick={handleClick}
+          onMouseMove={handleMouseMove}
+        />
+      </div>
+      {isGamePlaying && 
+        <Button icon={FaSkull} 
+          onClick={() => { stopGame(); }} 
+          className="mt-12 relative pointer-events-auto select-none cursor-pointer"
+        >
+          Stop the goblins
+        </Button>
+      }
+    </>
   );
 }
