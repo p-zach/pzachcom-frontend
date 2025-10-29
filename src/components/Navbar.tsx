@@ -14,7 +14,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+    <nav className="bg-gray-50 dark:bg-gray-900 shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
           <Link href="/">
