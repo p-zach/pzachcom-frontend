@@ -18,7 +18,7 @@ export default function Button({
 
   if (external) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={`${styling}`}>
+      <a href={href} target="_blank" rel="noopener noreferrer" className={styling}>
         {Icon && <Icon className="w-4 h-4" />}
         {children}
       </a>

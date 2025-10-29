@@ -13,8 +13,6 @@ export default function DailyPhoto() {
 
   const [exifString, setExifString] = useState<string>("");
 
-  
-
   function createExifString(exif: Record<string, unknown>) {
     const model = exif["Model"] as string;
     const focalLength = exif["FocalLength"] as number;
@@ -63,7 +61,7 @@ export default function DailyPhoto() {
       {!loading && !photoError && <div className="pt-3 text-sm italic">
         {exifString? exifString : "Loading EXIF data..."}
       </div>}
-      {loading && <p>Loading photo of the day...</p>}
+      {loading && !photoError && <p>Loading photo of the day...</p>}
     </div>
   )
 }
