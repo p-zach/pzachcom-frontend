@@ -42,7 +42,7 @@ export default function GalleryPage() {
           <h1 className="text-3xl font-roboto-serif font-semibold mb-6">Photo Gallery</h1>
           <p className="text-left">
             I started photography in 2023 and have thoroughly appreciated the opportunities to explore more and meet other photographers.
-            I most enjoy taking photos in nature, but you'll also find me snapping pictures in cities and of people!
+            I most enjoy taking photos in nature, but you&apos;ll also find me snapping pictures in cities and of people!
             Below is a selection of my work--please enjoy!
           </p>
         </Card>
