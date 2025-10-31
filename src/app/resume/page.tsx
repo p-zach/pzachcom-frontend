@@ -108,14 +108,14 @@ export default function ResumePage() {
   return (
     <Section>
       <div className="max-w-4xl mx-auto">
-        <div className="relative w-full h-full rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm p-15 overflow-hidden">
+        <div className="relative w-full h-full rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm p-4 md:p-15 overflow-hidden">
           <div className="relative z-10 text-brand-dark text-left pointer-events-none">
             <h1 className="text-3xl font-roboto-serif text-center font-semibold mb-2">
               <SelectableText>
                 Porter Zach
               </SelectableText>
             </h1>
-            <p className="text-center mb-6">
+            <p className="text-center pb-3 mb-3 border-b border-dashed border-gray-300">
               <SelectableText>
                 porterdzach [at] gmail [dot] com
                 | <FaLinkedin className="inline" />&nbsp;
@@ -177,7 +177,7 @@ export default function ResumePage() {
                 </div>
               )}
             </div>
-            <h2 className="text-2xl font-roboto-serif italic -mb-3 mt-8">
+            <h2 className="text-2xl font-roboto-serif italic -mb-3 mt-4 pt-4 border-t border-dashed border-gray-300">
               <SelectableText>
                 Education
               </SelectableText>
