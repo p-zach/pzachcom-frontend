@@ -31,7 +31,7 @@ export default function HomePage() {
 
   return (
     <Section>
-      <div className="flex flex-col md:flex-row gap-8 w-full max-w-6xl mx-auto p-6">
+      <div className="flex flex-col lg:flex-row gap-8 w-full max-w-6xl mx-auto p-2 md:p-6">
 
         {/* Left card */}
         <Card className="bg-white dark:bg-gray-800">
