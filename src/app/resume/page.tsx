@@ -11,7 +11,7 @@ export default function ResumePage() {
         type: "Master's degree",
         field: "Computer Science",
         start_date: "2025",
-        end_date: "2027",
+        end_date: "2028",
         gpa: "4.0"
       },
       {
@@ -20,7 +20,7 @@ export default function ResumePage() {
         field: "Computer Science",
         start_date: "2022",
         end_date: "2025",
-        gpa: "3.95",
+        gpa: "3.94",
         coursework: "Design & Analysis of Algorithms, Software Project Design &\
           Implementation, Machine Learning, Artificial Intelligence, Computer \
           Networking, Prototyping Intelligent Devices"
@@ -35,20 +35,11 @@ export default function ResumePage() {
         end_date: "Present",
         type: "Full-time",
         bullets: [
-          "Helped lead an API and UI overhaul for internal Config and Label \
-          editor tools, improving response times by 80% and enabling internal \
-          teams to deliver customer updates 2+ hours faster, reducing support \
-          delays and accelerating pharmacy automation workflows.",
-          "Developed and maintained full-stack cloud features across Azure \
-          Function Apps, Cosmos DB, and Entra (B2C), collaborating with QA and \
-          Product to modernize legacy services, expand test coverage by more \
-          than 50%, and deliver more reliable, scalable APIs, UIs, and \
-          automation workflows.",
-          "Improved platform reliability and engineering quality by reducing \
-          latency, eliminating bugs, writing CI/CD and automation scripts, and \
-          championing code reviews, documentation, and clean design patterns \
-          while helping lead development of a key internal Config Editor tool \
-          and streamlining team development processes."
+          "Developed, maintained, and deployed core Azure infrastructure, web UI applications, data pipelines, and shared services used by internal teams and production customers.",
+          "Migrated Azure resources from manual management to Terraform, reducing configuration drift and improving fail-safety through version-controlled infrastructure.",
+          "Engineered Azure DevOps pipelines for automated building, unit testing, and deployment, significantly reducing time to deploy and lowering change failure rates.",
+          "Designed and implemented infrastructure-level alerts and monitoring modules within Terraform to improve incident response times and system clarity.",
+          "Implemented Config & Label editor tools, facilitating an 80% reduction in customer service response time."
         ]
       },
       {

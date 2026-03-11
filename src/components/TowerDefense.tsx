@@ -4,7 +4,7 @@ import { TowerDefenseGame } from "@/scripts/TowerDefenseGame";
 import Button from "@/components/Button";
 import { FaSkull } from 'react-icons/fa';
 
-const GAME_START_DELAY = 20_000;
+const GAME_START_DELAY = 15_000;
 
 export default function TowerDefense() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
