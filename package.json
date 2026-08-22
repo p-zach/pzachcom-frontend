@@ -11,6 +11,7 @@
     "lint:watch": "chokidar \"**/*.{ts,tsx}\" -c \"npm run lint\""
   },
   "dependencies": {
+    "@react-spring/web": "^10.1.2",
     "exifr": "^7.1.3",
     "fraction.js": "^5.3.4",
     "next": "^15.5.7",
@@ -18,7 +19,10 @@
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
     "react-icons": "^5.5.0",
+    "react-markdown": "^10.1.0",
     "react-photo-album": "^3.2.1",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
     "seedrandom": "^3.0.5",
     "yet-another-react-lightbox": "^3.25.0"
   },

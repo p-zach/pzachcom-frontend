@@ -1,7 +1,7 @@
 import Section from "@/components/Section";
 import SelectableText from "@/components/SelectableText";
 import Game from "@/components/TowerDefense";
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaAt } from 'react-icons/fa';
 
 export default function ResumePage() {  
   const resume = {
@@ -108,7 +108,7 @@ export default function ResumePage() {
             </h1>
             <p className="text-center pb-3 mb-3 border-b border-dashed border-gray-300">
               <SelectableText>
-                porterdzach [at] gmail [dot] com
+                porterdzach<FaAt className="w-3 h-3 inline-block align-middle"/>gmail.com
                 | <FaLinkedin className="inline" />&nbsp;
                 <a href="https://www.linkedin.com/in/p-zach/"
                   target="_blank"

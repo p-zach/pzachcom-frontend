@@ -5,9 +5,11 @@ import { useState } from 'react';
 import ThemeToggle from '@/components/ThemeToggle';
 
 const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Resume', href: '/resume' },
-  { name: 'Photography Gallery', href: '/gallery' },
+  { name: 'home', href: '/' },
+  { name: 'resume', href: '/resume' },
+  { name: 'projects', href: '/projects' },
+  { name: 'ai policy', href: '/ai' },
+  { name: 'photos', href: '/gallery' },
 ];
 
 export default function Navbar() {
@@ -19,15 +21,15 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link href="/">
             <div className="text-3xl font-roboto-serif font-bold flex gap-1">
-              <p>pzach.com</p>
+              <p className='p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-950'>pzach.com</p>
             </div>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-2">
             <ThemeToggle />
             {navLinks.map((link) => (
-              <Link key={link.name} href={link.href} className="font-noto-sans hover:text-gray-600 dark:hover:text-gray-300">
+              <Link key={link.name} href={link.href} className="font-noto-sans p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-950">
                 {link.name}
               </Link>
             ))}

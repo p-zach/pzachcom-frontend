@@ -1,24 +1,46 @@
+"use client";
+
+import { useRef } from "react";
 import Section from "@/components/Section";
-import DailyPhoto from "@/components/DailyPhoto";
-import Card from "@/components/Card";
 import Button from "@/components/Button";
-import Image from "next/image";
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { IoIosDocument } from "react-icons/io";
+import Link from "next/link";
+import { FaGithub, FaLinkedin, FaAt } from 'react-icons/fa';
+import AudioPlayer from "@/components/AudioPlayer";
+import { useSpring, animated } from "@react-spring/web";
+import BirdSwarm from "@/components/Boids";
 
 export default function HomePage() {  
+  const [{ progress }, api] = useSpring(() => ({ progress: 0 }));
+  const pronunciationGuide = useRef<HTMLParagraphElement>(null);
+
+  const highlight = () => {
+    api.start({ progress: 1 })
+    pronunciationGuide.current!.scrollIntoView();
+    setTimeout(() => {
+      api.start({ progress: 0 })
+    }, 1000)
+  }
+
   const text = {
-    title: "Hi, I'm Porter!",
-    statement: "\
-      I'm a full-stack developer who builds reliable systems and \
-      APIs with Python, C#, and TypeScript. Code \
-      is written once but read many times, so I aim for clarity, \
-      consistency, and maintainability in everything I make. Many of \
-      my projects run on Azure, where I enjoy designing solutions that \
-      are both efficient and easy to understand.",
-    hobbies: "\
-      In my free time, I enjoy photography, programming, reading sci-fi and history, \
-      and tinkering with hardware.",
+    title: <span>Porter Zach<sup onClick={highlight} className="cursor-pointer">¹</sup></span>,
+    introduction: "\
+      Hi! I'm Porter, a full-stack software engineer.", 
+    description: "\
+      Code is written once but read many times, so I aim for clarity, \
+      consistency, and maintainability in everything I make. I'm enthusiastic about designing solutions that \
+      are both efficient and easy to understand. Much of my work is in Python, C#, and Typescript.",
+    hobbies: <span>
+      Outside of programming, I enjoy <Link href="/gallery" className="link text-gray-950 dark:text-gray-50">photography</Link>,
+      learning new languages,&nbsp;
+      <Link 
+        href="https://www.goodreads.com/user/show/102527332-porter-zach" 
+        target="_blank"
+        rel="noopener noreferrer" 
+        className="link text-gray-950 dark:text-gray-50">
+          reading sci-fi and history
+      </Link>,
+      and <Link href="/writing" className="link text-gray-950 dark:text-gray-50">writing</Link>.
+    </span>,
     quote: {
       text: "\
         All problems in computer science can be solved by another level \
@@ -30,68 +52,54 @@ export default function HomePage() {
   }
 
   return (
-    <Section>
-      <div className="flex flex-col lg:flex-row gap-8 w-full max-w-6xl mx-auto p-2 md:p-6">
-
-        {/* Left card */}
-        <Card className="bg-white dark:bg-gray-800">
-          <div className="flex flex-col items-center">
-            <div className="w-32 h-32 relative mb-6">
-              <Image
-                src="./headshot_square.jpg"
-                alt="Headshot photo"
-                fill
-                className="rounded-full object-cover shadow-xl"
-                priority
-              />
-            </div>
-            <h1 className="text-2xl font-roboto-serif mb-2">
+    <div className="relative">
+      <BirdSwarm className="absolute z-0"/>
+      <Section className="relative pointer-events-none">
+        <div className="max-w-2xl mx-auto font-noto-sans p-2 md:p-6">
+          <div className="text-left leading-7 pointer-events-auto bg-white/60 dark:bg-gray-800/60">
+            <h1 className="text-4xl font-roboto-serif font-bold mb-2">
               {text.title}
             </h1>
-          </div>
 
-          <div className="mx-auto text-left space-y-4 mt-4 text-md">
-            <p>{text.statement}</p>
-            <p>{text.hobbies}</p>
+            <div className="space-y-4 mt-4 text-md">
+              <p>{text.introduction}</p>
+              <p>{text.description}</p>
+              <p>{text.hobbies}</p>
+              <p>
+                You can email me at&nbsp;
+                <span className="mono text-gray-950 dark:text-gray-50">
+                  porterdzach<FaAt className="w-3 h-3 inline-block align-middle"/>gmail.com
+                </span> or find me on GitHub or LinkedIn.</p>
+            </div>
 
-            <div className="pt-4 text-sm text-gray-500 dark:text-gray-300">
+            <div className="mt-8 mb-6">
+              <div className="flex flex-wrap justify-center gap-3">
+                <Button href="https://github.com/p-zach" icon={FaGithub} external>GitHub</Button>
+                <Button href="https://linkedin.com/in/p-zach" icon={FaLinkedin} external>LinkedIn</Button>
+              </div>
+            </div>
+
+            <div className="pt-4 text-sm text-gray-500 dark:text-gray-300 border-b border-gray-300">
               <hr className="border-t border-dashed border-gray-300 mb-4" />
               <p className="italic">
                 {text.quote.text}
               </p>
-              <p className="mt-2">
-                &nbsp;&nbsp;- <a href={text.quote.author_link} className="underline">{text.quote.author}</a>
+              <p className="mt-2 mb-6">
+                &nbsp;&nbsp;- <Link href={text.quote.author_link} className="underline">{text.quote.author}</Link>
               </p>
             </div>
+
+            <animated.div
+              className="mt-4 w-fit" 
+              style={{
+                backgroundColor: progress.to([0, 1], ["rgba(96, 165, 250, 0)", "rgba(96, 165, 250, 1)"]),
+              }}
+            >
+              <p ref={pronunciationGuide}>¹ /zɑːk/ <AudioPlayer path="./zach.mp3" className="cursor-pointer w-4 h-4 inline-block align-[-7%]"/></p>
+            </animated.div>
           </div>
-
-          <div className="mt-6 pt-6 border-t border-gray-300">
-            <div className="flex flex-wrap justify-center gap-3">
-              <Button href="/resume" icon={IoIosDocument}>Resume</Button>
-              <Button href="https://github.com/p-zach" icon={FaGithub} external>GitHub</Button>
-              <Button href="https://linkedin.com/in/p-zach" icon={FaLinkedin} external>LinkedIn</Button>
-            </div>
-          </div>
-        </Card>
-
-        {/* Right card */}
-        <Card>
-          <h2 className="text-2xl font-roboto-serif mb-4 text-center">
-            Photo of the Day
-          </h2>
-
-          <div className="rounded-xl overflow-hidden border border-gray-50 bg-gray-100 dark:bg-gray-700 dark:border-gray-600 shadow-inner p-0">
-            <div className="p-4">
-              <DailyPhoto />
-            </div>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-3 mt-4">
-            <Button href="/gallery">Visit the gallery</Button>
-          </div>
-        </Card>
-
-      </div>
-    </Section>
+        </div>
+      </Section>
+    </div>
   );
 }

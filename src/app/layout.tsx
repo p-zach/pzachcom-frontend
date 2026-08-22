@@ -28,8 +28,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${notoSans.variable} ${robotoSerif.variable} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={true}>
-          <div className="text-gray-950 dark:text-gray-50 bg-white dark:bg-gray-800 flex flex-col min-h-screen">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
+          <div className="text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-grow">{children}</main>
             <Footer />
