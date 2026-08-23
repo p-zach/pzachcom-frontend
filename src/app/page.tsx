@@ -39,7 +39,7 @@ export default function HomePage() {
         className="link text-gray-950 dark:text-gray-50">
           reading sci-fi and history
       </Link>,
-      and <Link href="/writing" className="link text-gray-950 dark:text-gray-50">writing</Link>.
+      and writing.
     </span>,
     quote: {
       text: "\
