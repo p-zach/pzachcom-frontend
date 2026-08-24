@@ -5,6 +5,7 @@ import { Noto_Sans, Roboto_Serif } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import BlankPage from "@/components/Blank";
 
 const notoSans = Noto_Sans({
   variable: "--font-noto-sans",
@@ -32,7 +33,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
           <div className="text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 flex flex-col min-h-screen">
             <Navbar />
-            <Suspense>
+            <Suspense fallback={<BlankPage />}>
               <main className="flex-grow">{children}</main>
             </Suspense>
             <Footer />
