@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ThemeProvider } from "next-themes";
 import { Noto_Sans, Roboto_Serif } from "next/font/google";
 import "./globals.css";
@@ -31,7 +32,9 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
           <div className="text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 flex flex-col min-h-screen">
             <Navbar />
-            <main className="flex-grow">{children}</main>
+            <Suspense>
+              <main className="flex-grow">{children}</main>
+            </Suspense>
             <Footer />
           </div>
         </ThemeProvider>
