@@ -16,7 +16,7 @@ export default function Footer() {
           </Link> • <Link href="/ai"
             className='underline'
           >
-            AI policy
+            ai policy
           </Link>
         </span>
       </div>
