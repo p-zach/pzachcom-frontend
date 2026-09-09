@@ -116,7 +116,10 @@ export default function BirdSwarm({
       canvas.width = Math.max(1, Math.floor(width * pixelRatio));
       canvas.height = Math.max(1, Math.floor(height * pixelRatio));
       ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-      resetBirds();
+      
+      if (birds.length === 0) {
+        resetBirds();
+      }
     }
 
     function drawDartBird(bird, flap) {

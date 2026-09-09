@@ -8,6 +8,7 @@ import { FaGithub, FaLinkedin, FaAt } from 'react-icons/fa';
 import AudioPlayer from "@/components/AudioPlayer";
 import { useSpring, animated } from "@react-spring/web";
 import BirdSwarm from "@/components/Boids";
+import RandomQuote from "@/components/RandomQuote";
 
 export default function HomePage() {  
   const [{ progress }, api] = useSpring(() => ({ progress: 0 }));
@@ -41,14 +42,6 @@ export default function HomePage() {
       </Link>,
       and writing.
     </span>,
-    quote: {
-      text: "\
-        All problems in computer science can be solved by another level \
-        of indirection, except of course for the problem of too many \
-        levels of indirection.",
-      author: "David Wheeler",
-      author_link: "https://en.wikipedia.org/wiki/David_Wheeler_(computer_scientist)",
-    }
   }
 
   return (
@@ -81,12 +74,7 @@ export default function HomePage() {
 
             <div className="pt-4 text-sm text-gray-500 dark:text-gray-300 border-b border-gray-300">
               <hr className="border-t border-dashed border-gray-300 mb-4" />
-              <p className="italic">
-                {text.quote.text}
-              </p>
-              <p className="mt-2 mb-6">
-                &nbsp;&nbsp;- <Link href={text.quote.author_link} className="underline">{text.quote.author}</Link>
-              </p>
+              <RandomQuote className="mb-6" />
             </div>
 
             <animated.div
