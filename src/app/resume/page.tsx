@@ -8,7 +8,7 @@ export default function ResumePage() {
     education: [
       {
         school: "Georgia Institute of Technology",
-        type: "Master's degree",
+        type: "Master's degree (online, part-time)",
         field: "Computer Science",
         start_date: "2025",
         end_date: "2028",
