@@ -31,7 +31,7 @@ export default function HomePage() {
       are both efficient and easy to understand. Much of my work is in Python, C#, and Typescript.",
     hobbies: <span>
       Outside of programming, I enjoy <Link href="/gallery" className="link text-gray-950 dark:text-gray-50">photography</Link>,
-      learning new languages,&nbsp;
+      learning new languages, birdwatching,&nbsp;
       <Link 
         href="https://www.goodreads.com/user/show/102527332-porter-zach" 
         target="_blank"
